@@ -1,0 +1,15 @@
+<h1><%= @post.title %></h1>
+<p>Published at <%= time_ago_in_words(@post.created_at)%> by: <b><%= @post.user.email %></b> </p>
+<p>Description: <%= @post.content %></p>
+
+<div class="comments">
+  <h2><%= @post.comments.count %></h2>
+  <%= render @post.comments %>
+
+  <h3>Reply to thread</h3>
+  <%= render "comments/form" %>
+</div>
+
+<%= link_to "Home", root_path, class: "btn btn-default" %>
+<%= link_to "Edit", edit_post_path(@post), class: "btn btn-default" %> 
+<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure?"}, class: "btn btn-default" %> 
